@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+:root {
+  --dark: #374151;
+  --heading_color: #000000;
+  --para_color: #6b7280;
+  --action_color: #111827;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 1.8rem;
+}
+span {
+  display: inline-block;
+}
+header {
+  height: 40vh;
+  position: relative;
+}
+.navigation {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 100%;
+  border: 1px solid white;
+}
+.navigation h1 {
+  font-size: 6rem;
+  padding-left: 4.2rem;
+}
+.navigation a {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  padding-right: 4.2rem;
+}
+.bg {
+  background-image: url(./headerBg.jpeg);
+  background-size: contain;
+  filter: brightness(30%);
+  height: 100%;
+}
+.search-bar {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60vw;
+  margin: auto;
+  border: 1px solid grey;
+  border-radius: 5px;
+  overflow: hidden;
+  transform: translate(0, -50%);
+}
+.search-bar input {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-right: 1px dotted grey;
+}
+.search-bar input:focus {
+  outline: none;
+
+  border-bottom: 1px solid grey;
+}
+.search-bar label {
+  padding: 1rem 2rem;
+  color: var(--dark);
+}
+.movies-arr {
+  width: 900px;
+  margin: auto;
+}
+.movie-container {
+  padding: 1.5rem 1rem;
+  margin: 1rem;
+  gap: 2rem;
+  max-width: 900px;
+  border-bottom: 1px solid var(--dark);
+}
+.movie-image {
+  height: 25rem;
+}
+.movie-image img {
+  height: 100%;
+  border-radius: 5px;
+}
+.movie-title {
+  color: var(--heading_color);
+  padding: 1rem;
+  align-items: center;
+}
+.movie-rating {
+  padding: 0 1rem;
+}
+.movie-actions {
+  align-items: center;
+  gap: 4rem;
+  position: relative;
+  margin: 1rem 0rem;
+  color: var(--action_color);
+}
+.movie-watchlist {
+  position: absolute;
+  right: 0;
+  top: 0px;
+  border: none;
+  background-color: white;
+  font-weight: 700;
+}
+.movie-para {
+  color: var(--para_color);
+}
