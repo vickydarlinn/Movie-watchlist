@@ -80,7 +80,7 @@ header {
   color: var(--dark);
 }
 .movies-arr {
-  width: 900px;
+  max-width: 900px;
   margin: auto;
 }
 .movie-container {
