@@ -7,51 +7,54 @@
     <title>Movie Watchlist</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="addons.css" />
+    <script
+      src="https://kit.fontawesome.com/c0224bf9ae.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <header>
-      <div class="bg"></div>
-      <div class="navigation">
-        <h1>Find your film</h1>
-        <a href="watchlist.html">Watchlist</a>
+      <div class="background-image"></div>
+      <div class="nav">
+        <a href="./index.html" class="logo">Find your film</a>
+        <a href="./watchlist.html" class="watchlist-page">My Watchlist</a>
       </div>
     </header>
-    <div class="search-bar">
-      <input id="movieSearch" type="text" placeholder="Search for a movie" />
-      <label class="movieSearchButton" for="movieSearch">Search</label>
+    <div class="search-container">
+      <input id="seachInput" type="text" placeholder="Search for a movie" />
+      <label id="movieSearchBtn" for="seachInput">Search</label>
     </div>
-    <div class="movies-arr">
+    <h3 class="not-found"></h3>
+    <section class="movies-list">
       <!-- <div class="movie-container flex">
-        <div class="movie-image">
-          <img
-            src="https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg"
-            alt=""
-          />
+        <div class="movie-poster">
+          <img src="./demoImage.jpeg" alt="movie poster" />
         </div>
-        <div class="movie-about">
-          <div class="movie-title flex">
-            <h4>Movie heading</h4>
+        <div class="movie-info">
+          <div class="movie-header flex">
+            <h3 class="movie-heading">Batman</h3>
             <span class="movie-rating">⭐️ 8.1</span>
           </div>
-          <div class="movie-actions flex">
-            <span class="movie-duration">117 min</span>
-            <span class="movie-genre">Action.Drama, Sci-fi</span>
-            <button class="movie-watchlist">➕ Watchlist</button>
+          <div class="movie-extraInfo flex">
+            <div class="movie-about flex">
+              <span class="movie-duration">117min</span>
+              <span class="movie-genre">Horror</span>
+            </div>
+            <button class="watchlist-button">Add</button>
           </div>
-          <div class="movie-para">
+          <div class="movie-story">
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui vero
-              quidem, cupiditate aperiam asperiores explicabo beatae aut!
-              Laudantium et magni nulla deserunt animi nobis, vitae est illo
-              esse repellat quo voluptates, voluptate architecto ab sapiente
-              nostrum soluta aliquam dolor hic dignissimos. Soluta quaerat
-              necessitatibus explicabo cupiditate impedit quo perferendis sint.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
+              temporibus repellat, error esse facere nulla beatae voluptas
+              pariatur asperiores excepturi accusantium quaerat officia.
+              Pariatur laboriosam sapiente dolor nam minima earum!
             </p>
           </div>
         </div>
       </div> -->
-      <!-- //////////////////// -->
-    </div>
+      <!-- /////// -->
+    </section>
+
     <script src="app.js"></script>
   </body>
 </html>

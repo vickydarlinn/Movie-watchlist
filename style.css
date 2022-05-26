@@ -1,15 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 :root {
-  --dark: #374151;
-  --heading_color: #000000;
-  --para_color: #6b7280;
-  --action_color: #111827;
+  --movie-extraInfo: #111827;
+  --movie-story: #6b7280;
 }
 html {
   font-size: 62.5%;
@@ -17,42 +15,45 @@ html {
 body {
   font-size: 1.8rem;
 }
-span {
-  display: inline-block;
-}
+/* header of index.html */
 header {
-  height: 40vh;
   position: relative;
 }
-.navigation {
+.background-image {
+  width: 100vw;
+  height: 40vh;
+  background: url(./headerBg.jpeg) repeat center center;
+  background-size: contain;
+  filter: brightness(30%);
+}
+.nav {
   position: absolute;
-  top: 0px;
-  left: 0px;
-  color: white;
+  left: 0;
+  top: 0;
+  transform: translate(10%, 0%);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100vw;
+  /* border: 1px solid red; */
+  width: 80%;
   height: 100%;
-  border: 1px solid white;
+  margin: auto;
 }
-.navigation h1 {
-  font-size: 6rem;
-  padding-left: 4.2rem;
-}
-.navigation a {
-  text-decoration: none;
+.nav a {
+  display: inline-block;
   color: white;
+  text-decoration: none;
+}
+a.logo {
+  font-size: 7rem;
+  font-weight: 700;
+}
+a.watchlist-page {
+  font-size: 2.4rem;
   cursor: pointer;
-  padding-right: 4.2rem;
 }
-.bg {
-  background-image: url(./headerBg.jpeg);
-  background-size: contain;
-  filter: brightness(30%);
-  height: 100%;
-}
-.search-bar {
+/* search container */
+.search-container {
   background-color: white;
   display: flex;
   justify-content: center;
@@ -64,62 +65,114 @@ header {
   overflow: hidden;
   transform: translate(0, -50%);
 }
-.search-bar input {
+.search-container input {
   width: 100%;
   padding: 1rem;
   border: none;
-  border-right: 1px dotted grey;
+  border: 1px black grey;
 }
-.search-bar input:focus {
+.search-container input:focus {
   outline: none;
 
   border-bottom: 1px solid grey;
 }
-.search-bar label {
+.search-container label {
   padding: 1rem 2rem;
   color: var(--dark);
 }
-.movies-arr {
+/* not-found */
+.not-found {
+  text-align: center;
+}
+/* movie-component css */
+section.movies-list,
+.watch-list {
   max-width: 900px;
   margin: auto;
 }
+
 .movie-container {
-  padding: 1.5rem 1rem;
-  margin: 1rem;
-  gap: 2rem;
-  max-width: 900px;
-  border-bottom: 1px solid var(--dark);
-}
-.movie-image {
-  height: 25rem;
-}
-.movie-image img {
-  height: 100%;
-  border-radius: 5px;
-}
-.movie-title {
-  color: var(--heading_color);
+  border: 1px solid black;
+  border-radius: 10px;
+  overflow: hidden;
   padding: 1rem;
+  margin: 1rem;
+}
+.movie-poster {
+  /* border: 1px solid red; */
+  margin: 1rem;
+}
+.movie-poster img {
+  /* width: 100%; */
+  /* height: auto; */
+  height: 100%;
+  max-height: 300px;
+  overflow: hidden;
+  border-radius: 10px;
+  width: auto;
+}
+.movie-info {
+  margin: 1rem;
+}
+.movie-header {
   align-items: center;
+}
+.movie-heading {
+  margin-right: 1rem;
 }
 .movie-rating {
-  padding: 0 1rem;
+  color: var(--movie-extraInfo);
 }
-.movie-actions {
-  align-items: center;
-  gap: 4rem;
-  position: relative;
-  margin: 1rem 0rem;
-  color: var(--action_color);
+.movie-extraInfo {
+  /* align-items: center; */
+  justify-content: space-between;
+  margin: 1rem 0;
+  color: var(--movie-extraInfo);
 }
-.movie-watchlist {
-  position: absolute;
-  right: 0;
-  top: 0px;
+.movie-genre {
+  margin: 0 3rem;
+}
+.movie-story {
+  color: var(--movie-story);
+}
+.watchlist-button,
+.remove-button {
+  padding: 0.5rem 1rem;
   border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid var(--movie-extraInfo);
   background-color: white;
+  color: var(--movie-extraInfo);
   font-weight: 700;
 }
-.movie-para {
-  color: var(--para_color);
+/* responsive design */
+@media screen and (max-width: 800px) {
+  a.logo {
+    font-size: 3.2rem;
+  }
+  a.watchlist-page {
+    font-size: 2rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  .movie-container {
+    flex-direction: column;
+  }
+  .movie-poster img {
+    width: 100%;
+    max-height: none;
+  }
+  .search-container {
+    width: 98vw;
+  }
+  .nav {
+    flex-direction: column;
+    /* align-items: flex-start; */
+    justify-content: center;
+  }
+  .movie-container {
+    margin: 0.5rem;
+    padding: 0rem;
+  }
 }

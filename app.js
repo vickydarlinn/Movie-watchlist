@@ -1,72 +1,94 @@
-// url = `http://www.omdbapi.com/?i=tt3896198&apikey=a3a84389&s=the+dark+knight`;
-// fetch(url)
-//   .then((res) => res.json())
-//   .then((data) => console.log(data));
+const movieSearchButton = document.querySelector("#movieSearchBtn");
+// using Enter Keyword
+document.addEventListener("keypress", function (e) {
+  if (e.key == "Enter") {
+    movieSearch();
+  }
+});
 
-const movieName = document.querySelector("#movieSearch");
-const movieSearch = document.querySelector(".movieSearchButton");
+movieSearchButton.addEventListener("click", movieSearch);
+const template = document.querySelector(".movies-list");
 
-function urlMaker(movieName) {
-  const movieUrl = `http://www.omdbapi.com/?i=tt3896198&apikey=a3a84389&s=${movieName.replaceAll(
-    " ",
-    "+"
-  )}`;
-
-  return movieUrl;
+function movieSearch() {
+  const movieName = document.querySelector("#seachInput").value;
+  let url = urlMaker(movieName);
+  moviesListGenerator(url);
 }
 
-movieSearch.addEventListener("click", function () {
-  let url = urlMaker(movieName.value);
+function urlMaker(movieName) {
+  let url = ` http://www.omdbapi.com/?s=${movieName.replaceAll(
+    " ",
+    "+"
+  )}&apikey=a3a84389`;
+  return url;
+}
+function moviesListGenerator(url) {
+  let id = [];
   fetch(url)
     .then((res) => res.json())
-    .then((movies) => {
-      console.log(movies);
-      if (movies.Response === "False") {
-        return alert("Movie not found");
+    .then((data) => {
+      console.log(data);
+      if (data.Response === "False") {
+        document.querySelector(".not-found").textContent = "Movie Not found";
       } else {
-        console.log(movies.Search);
-        let imbdIDS = [];
-
-        movies?.Search?.forEach((movie) => {
-          imbdIDS.push(movie.imdbID);
+        data.Search.forEach((movie) => {
+          id.push(movie.imdbID);
         });
-        console.log(imbdIDS);
-        imbdIDS.forEach((id) => {
-          console.log(`http://www.omdbapi.com/?i=${id}&apikey=a3a84389`);
-          fetch(`http://www.omdbapi.com/?i=${id}&apikey=a3a84389`)
-            .then((resp) => resp.json())
+        id.forEach((id) => {
+          let url = ` http://www.omdbapi.com/?i=${id}&apikey=a3a84389`;
+          fetch(url)
+            .then((res) => res.json())
             .then((movie) => {
-              console.log(movie);
-              document.querySelector(
-                ".movies-arr"
-              ).innerHTML += ` <div class="movie-container flex">
-            <div class="movie-image">
-              <img
-                src="${movie.Poster}"
-                alt=""
-              />
-            </div>
-            <div class="movie-about">
-              <div class="movie-title flex">
-                <h4>${movie.Title}</h4>
-                <span class="movie-rating">⭐️${movie?.imdbRating}</span>
-              </div>
-              <div class="movie-actions flex">
-                <span class="movie-duration">${movie.Runtime} min</span>
-                <span class="movie-genre">${movie.Genre}</span>
-                <button class="movie-watchlist">➕ Watchlist</button>
-              </div>
-              <div class="movie-para">
-                <p>${movie.Plot}
-                </p>
-              </div>
-            </div>
-          </div>`;
+              templateGenerator(movie);
+              // ///
+              const watchlistButton =
+                document.querySelectorAll(".watchlist-button");
+              watchlistButton.forEach((btn) =>
+                btn.addEventListener("click", function () {
+                  if (btn.textContent != "Added") {
+                    console.log(btn);
+                    console.log(this.id);
+                    btn.textContent = "Added";
+                    btn.style.backgroundColor = "#ADFF2F";
+                    window.localStorage.setItem(this.id, this.id);
+                  } else {
+                    btn.textContent = "add";
+                    btn.style.backgroundColor = "white";
+                    window.localStorage.removeItem(this.id);
+                  }
+                })
+              );
             });
         });
       }
     });
-
-  document.querySelector(".movies-arr").innerHTML = "";
-  movieName.value = "";
-});
+  template.innerHTML = "";
+  document.querySelector("#seachInput").value = "";
+}
+// ////////////////////
+function templateGenerator(movie) {
+  template.innerHTML += `<div class="movie-container flex">
+    <div class="movie-poster">
+      <img src="${movie.Poster}" alt="movie poster" />
+    </div>
+    <div class="movie-info">
+      <div class="movie-header flex">
+        <h3 class="movie-heading">${movie.Title}</h3>
+        <span class="movie-rating">⭐️ ${movie.imdbRating}</span>
+      </div>
+      <div class="movie-extraInfo flex">
+        <div class="movie-about flex">
+          <span class="movie-duration">${movie.Runtime}</span>
+          <span class="movie-genre">${movie.Genre}</span>
+        </div>
+        <button class="watchlist-button" id="${movie.imdbID}">Add</button>
+      </div>
+      <div class="movie-story">
+        <p>
+          ${movie.Plot}
+        </p>
+      </div>
+    </div>
+  </div>`;
+}
+// /////////////

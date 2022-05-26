@@ -1,4 +1,9 @@
 .flex {
   display: flex;
-  /* flex-wrap: wrap; */
+}
+.vanish {
+  display: none;
+}
+.hidden {
+  visibility: hidden;
 }
