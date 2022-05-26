@@ -16,7 +16,7 @@ function movieSearch() {
 }
 
 function urlMaker(movieName) {
-  let url = ` http://www.omdbapi.com/?s=${movieName.replaceAll(
+  let url = ` https://www.omdbapi.com/?s=${movieName.replaceAll(
     " ",
     "+"
   )}&apikey=a3a84389`;
@@ -35,7 +35,7 @@ function moviesListGenerator(url) {
           id.push(movie.imdbID);
         });
         id.forEach((id) => {
-          let url = ` http://www.omdbapi.com/?i=${id}&apikey=a3a84389`;
+          let url = ` https://www.omdbapi.com/?i=${id}&apikey=a3a84389`;
           fetch(url)
             .then((res) => res.json())
             .then((movie) => {

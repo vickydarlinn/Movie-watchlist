@@ -15,7 +15,7 @@ function allStorage() {
 let ids = allStorage();
 // console.log(ids);
 ids.forEach((id) => {
-  let url = ` http://www.omdbapi.com/?i=${id}&apikey=a3a84389`;
+  let url = ` https://www.omdbapi.com/?i=${id}&apikey=a3a84389`;
   fetch(url)
     .then((res) => res.json())
     .then((movie) => {
